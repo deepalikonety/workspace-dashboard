@@ -1,0 +1,19 @@
+# Node.js / Next.js / React
+node_modules
+.next
+.env
+.env.local
+dist
+build
+
+# Django
+*.pyc
+__pycache__/
+db.sqlite3
+.env
+/staticfiles
+/media
+
+# macOS / Windows system files
+.DS_Store
+Thumbs.db
