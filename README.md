@@ -10,10 +10,10 @@ LeXi AI is an AI-powered legal workspace dashboard that allows teams to manage c
 ## 📸 Screenshots
 
 ### Dashboard View
-![Dashboard View](./public/screenshots/Dashboard.png)
+![Dashboard View](./workspace-dashboard/public/screenshots/Dashboard.png).
 
 ### Workspace Detail
-![Workspace Detail](./public/screenshots/Workspace.png)
+![Workspace Detail](./workspace-dashboard/public/screenshots/Dashboard.png).
 
 ---
 
