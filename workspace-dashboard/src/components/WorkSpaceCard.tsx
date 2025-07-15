@@ -124,7 +124,7 @@ export default function WorkspaceCard({
   style={{
     width: "94px",
     height: "37px",
-    padding: "8px 12px", // optional for text comfort
+    padding: "8px 12px", 
     borderWidth: "1px",
   }}
 >

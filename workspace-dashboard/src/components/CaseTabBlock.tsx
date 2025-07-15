@@ -7,7 +7,7 @@ interface Props {
   facts?: string;
 }
 
-export default function CaseTabsBlock({ activeTab, setActiveTab, onAddCaseClick }: Props) {
+export default function CaseTabsBlock({ activeTab, setActiveTab, onAddCaseClick, allegations, facts }: Props) {
   return (
     <div className="space-y-4">
       <div className="flex space-x-6 border-b mb-4">
@@ -18,16 +18,16 @@ export default function CaseTabsBlock({ activeTab, setActiveTab, onAddCaseClick 
               activeTab === tab ? "border-b-2 border-blue-600 text-blue-600" : "text-gray-500"
             }`}
             onClick={() => setActiveTab(tab as "summary" | "facts")}
-
           >
             {tab.charAt(0).toUpperCase() + tab.slice(1)}
           </button>
         ))}
       </div>
-      <div className="text-sm text-gray-700">
+
+      <div className="text-sm text-gray-700 whitespace-pre-wrap">
         {activeTab === "summary" ? (
           <>
-            <p>This is the summary section of the workspace.</p>
+            <p>{allegations || "No summary available."}</p>
             <button
               onClick={onAddCaseClick}
               className="mt-6 bg-blue-600 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition"
@@ -36,9 +36,10 @@ export default function CaseTabsBlock({ activeTab, setActiveTab, onAddCaseClick 
             </button>
           </>
         ) : (
-          <p>This is the facts section of the workspace.</p>
+          <p>{facts || "No facts available."}</p>
         )}
       </div>
     </div>
   );
 }
+
