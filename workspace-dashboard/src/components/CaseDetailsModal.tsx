@@ -19,6 +19,7 @@ type CaseFormFields = {
 };
 
 export default function CaseDetailsModal({ isOpen, onClose, onSave }: Props) {
+  
   const [manualMode, setManualMode] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [formData, setFormData] = useState<CaseFormFields>({
@@ -81,12 +82,16 @@ export default function CaseDetailsModal({ isOpen, onClose, onSave }: Props) {
     };
 
     try {
-      const res = await fetch("http://localhost:8000/api/workspaces/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newWorkspace),
-      });
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/workspaces/`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(newWorkspace),
+});
 
+      const text = await res.text();
+console.log(text); 
       const data = await res.json();
       if (res.ok) {
         console.log("✅ Workspace saved to backend:", data);
@@ -276,7 +281,7 @@ export default function CaseDetailsModal({ isOpen, onClose, onSave }: Props) {
               {/* Footer Buttons */}
               <div className="flex justify-end gap-4 border-t px-6 py-4 bg-white sticky bottom-0 z-10">
                 <button
-                  onClick={() => setManualMode(false)} // ✅ JUST toggle back
+                  onClick={() => setManualMode(false)} 
                   className="text-sm text-black border border-gray-400 rounded-[6px] px-[20px] py-[8px] hover:bg-gray-100"
                   style={{ width: "98px", height: "40px" }}
                 >

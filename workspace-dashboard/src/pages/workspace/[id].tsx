@@ -28,13 +28,15 @@ export default function WorkspaceDetail() {
   const [activeTab, setActiveTab] = useState<"summary" | "facts">("summary");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [workspace, setWorkspace] = useState<Workspace | null>(null);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
 
   useEffect(() => {
     if (!id) return;
 
     const fetchWorkspace = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/workspaces/");
+        const res = await fetch(`${API_URL}/api/workspaces/`);
         const data: Workspace[] = await res.json();
 
         const match = data.find((w) => {
@@ -49,7 +51,7 @@ export default function WorkspaceDetail() {
     };
 
     fetchWorkspace();
-  }, [id]);
+  }, [id,API_URL]);
 
   const workspaceName = workspace?.name || "Workspace";
 

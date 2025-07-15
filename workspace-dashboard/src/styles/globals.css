@@ -19,12 +19,3 @@ body {
   @apply text-gray-800 antialiased;
 }
 
-/* REMOVE this — it was overriding font!
-html, body {
-  @apply font-sans;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-*/

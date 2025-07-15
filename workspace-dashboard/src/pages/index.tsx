@@ -52,9 +52,12 @@ export default function Dashboard() {
   const [isCaseModalOpen, setIsCaseModalOpen] = useState(false);
   const [workspaces, setWorkspaces] = useState<DashboardWorkspace[]>([]);
 
+
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
   const fetchWorkspaces = useCallback(async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/workspaces/");
+      const res = await fetch(`${API_URL}/api/workspaces/`);
       const rawData = await res.json();
 
       const normalized = (rawData as Workspace[]).map((w) => ({
@@ -76,11 +79,11 @@ export default function Dashboard() {
     } catch (err) {
       console.error("❌ Failed to fetch workspaces:", err);
     }
-  }, []);
+  }, [API_URL]);
 
   const handleDelete = async (id: number) => {
     try {
-      const res = await fetch(`http://localhost:8000/api/workspaces/${id}/`, {
+      const res = await fetch(`${API_URL}/api/workspaces/${id}/`, {
         method: "DELETE",
       });
 
