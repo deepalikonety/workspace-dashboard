@@ -19,7 +19,7 @@ type CaseFormFields = {
 };
 
 export default function CaseDetailsModal({ isOpen, onClose, onSave }: Props) {
-  
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
   const [manualMode, setManualMode] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [formData, setFormData] = useState<CaseFormFields>({
@@ -82,7 +82,7 @@ export default function CaseDetailsModal({ isOpen, onClose, onSave }: Props) {
     };
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/workspaces/`, {
+      const res = await fetch(`${API_URL}/api/workspaces/`, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -90,8 +90,7 @@ export default function CaseDetailsModal({ isOpen, onClose, onSave }: Props) {
   body: JSON.stringify(newWorkspace),
 });
 
-      const text = await res.text();
-console.log(text); 
+      
       const data = await res.json();
       if (res.ok) {
         console.log("✅ Workspace saved to backend:", data);
